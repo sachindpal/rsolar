@@ -1,0 +1,296 @@
+@font-face {
+  font-family: myFirstFont;
+  src: url(../fonts/Avenir-Book.ttf);
+}
+@font-face {
+  font-family: myFirstFontbold;
+  src: url(../fonts/AvenirLTStd-Black.otf);
+}
+body{
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+	font-size: 17px;
+	font-family: myFirstFont;
+}
+h1, h2, h4, h5, h6, h3{
+	font-family: myFirstFontbold !important;
+}
+.btn {
+    padding-left:25px !important;
+	padding-right:25px !important;
+}
+.outline-btn{
+	border:2px solid #242834;
+	border-radius: 40px;
+	transition: ease all .3s;
+	color: #242834;
+}
+.outline-btn:hover{
+   background: #242834;
+   color: white;
+}
+.icon img{
+	width: 20px;
+}
+.icon{
+	border:1px solid #ccc;
+	border-radius: 40px;
+	padding: 15px 15px;
+	margin-bottom: 15px;
+}
+.greenclr{
+	color: #72BF44;
+}
+.box{
+	border:1px solid #1919191A;
+	border-radius: 10px;
+	padding: 15px;	
+}
+.box img{
+	margin-bottom: 8px;
+}
+.bg-blue{
+	background: #242834;
+}
+.number{
+	height: 35px;
+	width: 35px;
+	background: #72BF44;
+	border-radius: 50%;
+	line-height: 35px;
+	font-weight: bold;
+	margin: auto;
+	margin-bottom: 15px;
+}
+.common-btn2{
+	background: #72BF44;
+	border-radius: 40px;
+	color: white !important;
+	padding-left:25px !important;
+	padding-right:25px !important;
+}
+.social li{
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+	background: white;
+	border-radius: 40px;
+	line-height: 30px;
+	text-align: center;
+}
+.label{
+	font-weight: 12px !important;
+	background: #72BF441A;
+	color: #72BF44;
+	border-radius: 20px;
+	padding: 5px 10px;
+	margin-left: 15px;
+}
+.box{
+	min-height: 150px;
+}
+.bg-grey{
+	background: #F8F8F8;
+}
+.how .box{
+	min-height: 320px;
+}
+.customer .box{
+  background: #232734;
+}
+.clr-green{
+	color: #72BF44;
+}
+.listt{
+	margin-top: 20px;
+}
+.listt li{
+	color: white;
+	margin-bottom: 5px;
+	list-style-type: none;
+}
+.listt a{
+	color: white;	
+}
+.nav-pills .nav-link.active {
+    color: #fff;
+    background-color: white;
+    color: black;
+    border-color: #72BF44 !important;
+    font-weight: bold;
+}
+.nav-pills .nav-link{
+	border-color: #72BF44;
+	 border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0px;
+    background-color: white;
+    border-color: #ffffff42;
+}
+.nav-pills .nav-link.active{
+	 border-color: #72BF44;
+}
+.social1 li{
+   background: black;
+}
+.social1 li a{
+	color: white;
+}
+.home-icon{
+	position: absolute;
+	left:14px;
+}
+/*.headeradctive{
+	color: #72BF44;
+	font-weight: bold;
+}*/
+.bg-blue{
+	background: #232734;
+}
+.corner{
+    border-radius:24px !important;
+}
+ul.social.p-0 a {
+    /*color: #232734 !important;*/
+}
+footer ul.social.p-0 a {
+    /*color: #232734 !important;*/
+}
+.box2{
+    min-height: 315px;
+}
+
+
+
+@media screen and (max-width:787px) {
+	h1{font-size: 22px;}
+  h2{font-size: 20px;}
+  body{font-size: 15px;}
+  .imgwidth{width: 100% !important;}
+  .how .box{min-height: initial;}
+  .navbar-light .navbar-toggler{border: none;margin-top: 15px !important;
+  	margin-right: -25px !important;}
+  	.navbar-nav .nav-link{padding-left: 10px;}
+  	.img100{width: 100% !important;}
+  h2.tress{font-size: 14px !important;}
+  .display-4{font-size: 32px !important;}
+  .shadow-sm{box-shadow: none !important;}
+  .navbar-brand img{width: 100px;}
+  .banner img{width: 75% !important;}
+  .mcenter{text-align: center;}
+  .centermobile{text-align:center;}
+  .listt-border{border-bottom:1px solid #535353;padding-bottom: 15px !important;}
+  .mtop{margin-top: 3px !important; }
+  .social li{margin-right: 15px;}
+  .box2 {min-height: auto;}
+  .w-75.carbon{width:100% !important;}
+  .label{margin-left:0px !important;}
+  .impact{height: 300px;object-fit: cover;}
+}
+
+
+#rangeOutput{
+  right: 0;
+}
+/* Style the range slider */
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        /* Slider thumb */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: green;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: green;
+            cursor: pointer;
+        }
+
+        /* Slider fill before thumb */
+        input[type="range"]::-webkit-slider-runnable-track {
+            background: linear-gradient(to right, green 0%, green var(--range-percent), #d3d3d3 var(--range-percent), #d3d3d3 100%);
+        }
+
+        /* Slider thumb on hover */
+        input[type="range"]:hover::-webkit-slider-thumb {
+            background: darkgreen;
+        }
+
+        input[type="range"]:hover::-moz-range-thumb {
+            background: darkgreen;
+        }
+        #textField{
+           display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    margin-top: 15px;
+}
+    
+    .progress{
+    	transform: rotate(-90deg);
+    	height: 50px;
+    }  
+    .table td, .table th{
+        border: none;
+        padding: 5px;
+    }  
+    .card1{
+        border:4px solid #FFCD29;
+
+    }
+    .card-top{
+            position: absolute;
+    background: #FFCD29;
+    width: calc(100% + 8px);
+    left: -4px;
+    top: -45px;
+    border-radius: 20px 20px 0px 0px;
+    
+    box-sizing: content-box;
+    }
+    .card1.corner{
+        border-radius: 0px 0px 25px 25px !important;
+    }
+    .cardc{
+        min-height: 500px;
+        padding-top: 25px !important;
+    }
+    .blur{
+        filter: blur(8px);
+    }
+    .bg{        
+        background-image: url(../img/Calculatorbg.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
