@@ -11,8 +11,8 @@ if(!isset($_SESSION['calculation_id'])){
         <div class="row">
           <div class="col-md-8 mx-auto text-center">
           	<img src="img/check_circle.svg" width="50">
-         <h1>Your roof is great for 3.27kW solar!</h1>
-                 <p>Payback in about 3-4 years. ₹0-down financing options available.</p> 
+         <h1>Your roof is great for <span class="sys_rec">3.27</span>kW solar!</h1>
+                 <p>Payback in about <span id="pay_back">3-4</span> years. ₹0-down financing options available.</p> 
           </div>  
           </div>         
         </div>     
@@ -26,7 +26,7 @@ if(!isset($_SESSION['calculation_id'])){
                     <div class="border corner px-3 py-4">                      
                         <div>
                             <p class="mb-0"><img src="img/bolt.png" class="mr-3">Capacity required <img src="img/help.png" data-toggle="tooltip" title="Your current energy consumption based on your monthly bill and property type"></p>
-                            <h1>2.9 kW</h1>
+                            <h1><span id="cp_required">2.9</span> kW</h1>
                         </div>                       
                     </div>
     		 		
@@ -34,15 +34,15 @@ if(!isset($_SESSION['calculation_id'])){
     		 			<p><img src="img/solar_power1.png" class="mr-3">Solar system size <img src="img/help.png" data-toggle="tooltip" title="The system recommendation is based on your monthly bill, location, property type, and average energy consumption pattern. The area required is determined by the recommended system and panel type to ensure the best offers."></p>
                         <div>
                             <p class="mb-0"><img src="img/solar_power1.png" class="mr-3">System recommended </p>
-                            <h1>3.27kW</h1>
+                            <h1><span class="sys_rec">2.9</span>kW</h1>
                         </div>    		 		
     		 			<div class="mt-3">
     		 				<p class="mb-0"><img src="img/pageless.png" class="mr-3">Area required </p>
-    		 				<h1>292 sqft</h1>
+    		 				<h1><span id="area_req">292</span> sqft</h1>
     		 			</div>
                         <div class="mt-3">
                             <p class="mb-0"><img src="img/manufacturing.png" class="mr-3">Panel type </p>
-                            <h2>DCR module</h2>
+                            <h2 id=""><span id="panel_type">DCR</span> module</h2>
                         </div>
     		 		</div>
     		 	</div>
@@ -57,7 +57,7 @@ if(!isset($_SESSION['calculation_id'])){
                                 </div>
                               </div>
 
-                              <h6 class="mb-0">₹1,700</h6>
+                              <h6 class="mb-0">₹<span id="current_bill">1,700</span></h6>
                               <p>Current bill</p>                           
                              </div>
                               <div class="col-6">
@@ -65,7 +65,7 @@ if(!isset($_SESSION['calculation_id'])){
                                 <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">      
                                 </div>
                               </div>    
-                              <h6 class="mb-0">₹60</h6>
+                              <h6 class="mb-0">₹<span id="r_solar_bill">60</span></h6>
                               <p>r - solar bill</p>                     
                              </div>
 
@@ -94,15 +94,15 @@ if(!isset($_SESSION['calculation_id'])){
                        <div class="row mt-5">
                            <div class="col-md-4">
                                 <p class="mb-0"><img src="img/solar_power1.png" class="mr-2">System cost </p>
-                                <h4>₹1.07 Lakh</h4>
+                                <h4>₹<span id="system_cost_up">1.07</span> Lakh</h4>
                            </div>
                            <div class="col-md-5">
                                 <p class="mb-0"><img src="img/money_bag.png" class="mr-2">Lifetime savings </p>
-                                <h4>₹7.08 Lakh</h4>
+                                <h4>₹<span id="life_time_saving">7.08</span> Lakh</h4>
                            </div>
                            <div class="col-md-3">
                                 <p class="mb-0"><img src="img/trending_up.png" class="mr-2">ROI </p>
-                                <h4>17.4%</h4>
+                                <h4><span id="r_o_i">17.4</span></h4>
                            </div>
                        </div>
                   </div>  		 		
@@ -124,17 +124,17 @@ if(!isset($_SESSION['calculation_id'])){
     		 	  	  	  	 <div class="col-md-4">
     		 	  	  	  	 	 <img src="img/Forest.png" class="w-75">
     		 	  	  	  	 	 <p class="mb-0 mt-2"><img src="img/nature.png" class="mr-1">Trees added</p>
-    		 	  	  	  	 	 <h2>210</h2>
+    		 	  	  	  	 	 <h2 id="trees_added">210</h2>
     		 	  	  	  	 </div>
     		 	  	  	  	 <div class="col-md-4">
     		 	  	  	  	 	 <img src="img/Car.png" class="w-100">
     		 	  	  	  	 	 <p class="mb-0 mt-2"><img src="img/directions_car.png" class="mr-1">Cars off the road</p>
-    		 	  	  	  	 	 <h2>4</h2>
+    		 	  	  	  	 	 <h2 id="cars_of_the_road">4</h2>
     		 	  	  	  	 </div>
                               <div class="col-md-4">
                                  <img src="img/Factory.png" class="w-75">
                                  <p class="mb-0 mt-2"><img src="img/factory2.png" class="mr-1">Carbon emission saving</p>
-                                 <h2>4</h2>
+                                 <h2 id="carbon_emit">4</h2>
                              </div>
     		 	  	  	  </div>
     		 	  	  </div>
@@ -188,25 +188,25 @@ if(!isset($_SESSION['calculation_id'])){
                                     <p class="mb-0 py-2"><strong>Best value (All discount + Subsidy)</strong></p>
                                 </div>
     		 	 	 	 		 <p class="mb-0 mt-2"><img src="img/payment.png" class="mr-2">Cash payment plan</p>
-    		 	 	 	 		 <p class="mt-4"><span class="h2"><strong>₹1.07 Lakh</strong></span> <small>approx.</small></p>
+    		 	 	 	 		 <p class="mt-4"><span class="h2"><strong>₹<span id="system_cost_appr">1.07</span> Lakh</strong></span> <small>approx.</small></p>
 
     		 	 	 	 		 <a href="tel:9407059000"><button class="common-btn2 btn bg5 btn-block">Call Now</button></a>
 
     		 	 	 	 		 <table class="table mt-4 pricecard">
     		 	 	 	 		 	<tr>
-    		 	 	 	 		 		<th>₹ 2,10,000</th>
+    		 	 	 	 		 		<th>₹ <span id="system_cost_cash">2,10,000</span></th>
     		 	 	 	 		 		<th class="text-right">System cost</th>
     		 	 	 	 		 	</tr>
     		 	 	 	 		 	<tr>
-    		 	 	 	 		 		<td>₹ 78,000</td>
+    		 	 	 	 		 		<td><span id="pm_surya_cash">78,000</span></td>
     		 	 	 	 		 		<td class="text-right">PM Surya Subsidy</td>
     		 	 	 	 		 	</tr>
     		 	 	 	 		 	<tr>
-    		 	 	 	 		 		<td>₹ 21,000</td>
+    		 	 	 	 		 		<td id="r_solar_discount">₹ 21,000</td>
     		 	 	 	 		 		<td class="text-right">10% r-solar discount</td>
     		 	 	 	 		 	</tr>
     		 	 	 	 		 	<tr>
-    		 	 	 	 		 		<td>₹ 4,000</td>
+    		 	 	 	 		 		<td>₹ <span id="cash_dis">4,000</span></td>
     		 	 	 	 		 		<td class="text-right">Cash discount</td>
     		 	 	 	 		 	</tr>
     		 	 	 	 		 </table>
@@ -225,7 +225,7 @@ if(!isset($_SESSION['calculation_id'])){
                                         <th class="text-right">System cost</th>
                                     </tr>
                                     <tr>
-                                        <td>₹ 78,000</td>
+                                        <td>₹ <span id="pm_surya_fina">78,000</span></td>
                                         <td class="text-right">PM Surya Subsidy</td>
                                     </tr>
                                     <tr>
@@ -295,17 +295,18 @@ if(!isset($_SESSION['calculation_id'])){
 
 <script>
     $(document).ready(function(){
-    $('#myBasicForm').on('submit', function(event){
-        event.preventDefault(); // Prevent the form from submitting the normal way
         
         var formData = $(this).serialize(); // Serialize form data
         console.log('formData',formData)
         $.ajax({
-            url: 'resultLogic.php', // PHP file to handle the request
+            url: 'finalCalculation.php', // PHP file to handle the request
             type: 'POST',
-            data: formData,
+            data: {
+                function_name: 'getAllCalculation', // Name of the PHP function to call
+                params: [`<?php echo $_SESSION['calculation_id']; ?>`] // Parameters to pass to the function
+            },
             success: function(response){
-              console.log('response',response)
+            //   console.log('response',response)
 
               const res = JSON.parse(response)
               if(!res.status){
@@ -313,7 +314,31 @@ if(!isset($_SESSION['calculation_id'])){
 
               }else{
                 //  window.location.href = 'result.php';
-                $('#myModal').hide()
+                // $('#myModal').hide()
+               let result =  JSON.parse(response).data;
+               if(result){
+                
+                $('#cp_required').html(result.capacityRequired.toFixed(2))
+                $('#pm_surya_cash').html(result.PM_Surya_Subsidy)
+                $('#r_solar_discount').html(result.r_solar_discount)
+                $('.sys_rec').html(result.system_recommended)
+                $('#area_req').html(result.area_required)
+                $('#panel_type').html(result.panel_type)
+                $('#current_bill').html(result.bill)
+                $('#r_o_i').html(result.ROI)
+                $('#trees_added').html(result.trees_added)
+                $('#cars_of_the_road').html(result.cars_of_the_road)
+                $('#carbon_emit').html(result.carbon_emission_saving)
+                $('#system_cost_up').html((result.system_cost/100000).toFixed(2))
+                $('#system_cost_appr').html((result.system_cost/100000).toFixed(2))
+                $('#system_cost_cash').html(result.system_cost)
+                $('#life_time_saving').html((result.lifetime_savings/100000).toFixed(2))
+                $('#r_solar_bill').html(parseInt(result.solar_bill))
+                $('#cash_dis').html(result.cash_discount)
+                $('#pay_back').html(result.payback)
+                
+               }
+
               }
              
                 // $('#response').html(response); // Display the response from the server
@@ -322,6 +347,5 @@ if(!isset($_SESSION['calculation_id'])){
                 $('#response').html('Error: ' + error);
             }
         });
-    });
 });
 </script>
