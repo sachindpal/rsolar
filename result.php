@@ -296,13 +296,12 @@ if(!isset($_SESSION['calculation_id'])){
 <script>
     $(document).ready(function(){
         
-        var formData = $(this).serialize(); // Serialize form data
-        console.log('formData',formData)
+       function get_cash_calculation(){
         $.ajax({
             url: 'finalCalculation.php', // PHP file to handle the request
             type: 'POST',
             data: {
-                function_name: 'getAllCalculation', // Name of the PHP function to call
+                function_name: 'getCashCalculation', // Name of the PHP function to call
                 params: [`<?php echo $_SESSION['calculation_id']; ?>`] // Parameters to pass to the function
             },
             success: function(response){
@@ -347,5 +346,45 @@ if(!isset($_SESSION['calculation_id'])){
                 $('#response').html('Error: ' + error);
             }
         });
+       }
+
+
+
+       function get_finance_calculation(){
+        $.ajax({
+            url: 'finalCalculation.php', // PHP file to handle the request
+            type: 'POST',
+            data: {
+                function_name: 'getFinanceCalculation', // Name of the PHP function to call
+                params: [`<?php echo $_SESSION['calculation_id']; ?>`] // Parameters to pass to the function
+            },
+            success: function(response){
+            //   console.log('response',response)
+
+              const res = JSON.parse(response)
+              if(!res.status){
+                toastr.error('Error',res.message)
+
+              }else{
+                //  window.location.href = 'result.php';
+                // $('#myModal').hide()
+               let result =  JSON.parse(response).data;
+               if(result){
+                console.log('result',result)
+                
+               }
+
+              }
+             
+                // $('#response').html(response); // Display the response from the server
+            },
+            error: function(xhr, status, error) {
+                $('#response').html('Error: ' + error);
+            }
+        });
+       }
+
+       get_cash_calculation()
+       get_finance_calculation()
 });
 </script>
