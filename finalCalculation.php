@@ -28,7 +28,14 @@ function getCashCalculation($a) {
         // Loop through the rows of data
         while($row = $result->fetch_assoc()) {
             if($row['monthly_bill_range'] && $row['monthly_bill_range']!=''){
-            $bill = (float)$row['monthly_bill_range']/2;
+                $range = $row['monthly_bill_range'];
+
+// Split the string by the "-" character
+list($lower, $upper) = explode('-', $range);
+
+            $bill = ($lower+$upper)/2;
+            // print_r($bill);
+            // die;
             
         }else{
             $bill =  $row['monthly_bill'];
@@ -52,7 +59,7 @@ function getCashCalculation($a) {
     $results = $conn->query($sql);
     // print_r($capacityRequired);
     while($row = $results->fetch_assoc()) {
-        print_r($row);
+        // print_r($row);
         $row['capacityRequired'] = $capacityRequired;
         $row['bill'] = $bill;
         $row['solar_bill'] = 0.20*$bill;

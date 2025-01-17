@@ -377,7 +377,7 @@ if(!isset($_SESSION['calculation_id'])){
                 $("#r_solar_discount_finance").html(result.r_solar_discount)
                 $("#after_discount").html(result.after_discount)
                 $("#interest_rate").html(result.interest_rate)
-                $("#total_cost").html(result.system_cost)
+                $("#total_cost").html(result.total_System_cost)
 
                 let repeatCount = 10;
 
