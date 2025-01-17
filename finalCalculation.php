@@ -50,13 +50,15 @@ function getCashCalculation($a) {
         AND CAST(SUBSTRING_INDEX(kw_range, '-', -1) AS DECIMAL(10,2))";
 
     $results = $conn->query($sql);
+    // print_r($capacityRequired);
     while($row = $results->fetch_assoc()) {
+        print_r($row);
         $row['capacityRequired'] = $capacityRequired;
         $row['bill'] = $bill;
         $row['solar_bill'] = 0.20*$bill;
     return $row;
     }
-    return $a;
+    return [];
 }
 
 
@@ -87,6 +89,8 @@ function getFinanceCalculation($a,$loan_term) {
             $capacityRequired = $value2/4;
     }
     }
+
+    
 
         $sql = "SELECT *
     FROM finance_calculation

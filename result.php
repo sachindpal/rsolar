@@ -53,7 +53,7 @@ if(!isset($_SESSION['calculation_id'])){
                         <div class="row text-center">
                              <div class="col-6">
                                  <div class="progress  mt-5 mb-5">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">      
+                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">      
                                 </div>
                               </div>
 
@@ -62,7 +62,7 @@ if(!isset($_SESSION['calculation_id'])){
                              </div>
                               <div class="col-6">
                                  <div class="progress  mt-5 mb-5">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">      
+                                <div class="progress-bar" role="progressbar" aria-valuenow="7200" aria-valuemin="0" aria-valuemax="100" style="width:20%">      
                                 </div>
                               </div>    
                               <h6 class="mb-0">₹<span id="r_solar_bill">60</span></h6>

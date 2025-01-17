@@ -16,6 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo $data;
         die;
     }
+
+    if(!empty($_POST['monthly_bill_exact']) ){
+        if($_POST['monthly_bill_exact'] > 50000 ){
+            $data =  json_encode(array('status'=>0,'message'=>"Bill amount should not be greater than 50000"));
+            echo $data;
+            die;
+        }
+        
+    }
     $_SESSION['basic_info_data'] = $_POST;
     
      
