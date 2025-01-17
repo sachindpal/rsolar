@@ -61,7 +61,8 @@ function getCashCalculation($a) {
 
 
 
-function getFinanceCalculation($a) {
+function getFinanceCalculation($a,$loan_term) {
+    // print_r($loan_term);
     include('db.php');
     $sql = "SELECT * FROM basic_info_calculator Where id = ".$a."";
     $result = $conn->query($sql);
@@ -89,15 +90,27 @@ function getFinanceCalculation($a) {
 
         $sql = "SELECT *
     FROM finance_calculation
-    WHERE $capacityRequired BETWEEN 
+    WHERE loan_term=".$loan_term." AND $capacityRequired BETWEEN 
         CAST(SUBSTRING_INDEX(kw_range, '-', 1) AS DECIMAL(10,2)) 
         AND CAST(SUBSTRING_INDEX(kw_range, '-', -1) AS DECIMAL(10,2))";
-
+    $array = [];
     $results = $conn->query($sql);
+    $index =0;
+    
+    
+    
     while($row = $results->fetch_assoc()) {
         // $row['capacityRequired'] = $capacityRequired;
         // $row['bill'] = $bill;
         // $row['solar_bill'] = 0.20*$bill;
-    return $row;
+
+        array_push($array,$row);
+        $index++;
     }
+    $return = $array[0];
+    $term_array = $array[count($array)-1];
+    $return['number_of_years'] = $term_array['loan_term'];
+    // return $array;
+    return $return;
+    die;
 }

@@ -215,44 +215,43 @@ if(!isset($_SESSION['calculation_id'])){
                          <div class="col-md-6">
                             <div class="border cardc corner p-3">
                                  <p class="mb-0 mt-2"><img src="img/currency_rupee_circle.png" class="mr-2">Finance payment plan</p>
-                                 <p class="mt-4"><span class="h2"><strong>₹1,289*</strong></span> <small>/ month EMI</small></p>
+                                 <p class="mt-4"><span class="h2"><strong><span id="month_emi">1,289</span>*</strong></span> <small>/ month EMI</small></p>
 
                                  <a href="tel:9407059000"><button class="common-btn2 btn bg5 btn-block">Call Now</button></a>
 
                                  <table class="table mt-4 pricecard">
                                     <tr>
-                                        <th>₹ 2,10,000</th>
+                                        <th>₹ <span id="system_fin_cost">2,10,000</span></th>
                                         <th class="text-right">System cost</th>
                                     </tr>
                                     <tr>
-                                        <td>₹ <span id="pm_surya_fina">78,000</span></td>
+                                        <td><span id="pm_surya_fina">78,000</span></td>
                                         <td class="text-right">PM Surya Subsidy</td>
                                     </tr>
                                     <tr>
-                                        <td>₹ 21,000</td>
+                                    <td id="r_solar_discount_finance">₹ 21,000</td>
                                         <td class="text-right">10% r-solar discount</td>
                                     </tr>
                                     <tr>
-                                        <th>₹ 1,11,000</th>
+                                        <th>₹ <span id="after_discount">1,11,000</span></th>
                                         <th class="text-right">After discount</th>
                                     </tr>
                                      <tr>
-                                        <td>7%</td>
+                                        <td id="interest_rate">7%</td>
                                         <td class="text-right">Interest rate</td>
                                     </tr>
                                      <tr>
                                         <td>
                                             <form>
-                                                <select>
-                                                    <option value="">10 Years</option>
-                                                    <option value="">9 Years</option>
+                                                <select id="mySelect">
+                                                    
                                                 </select>
                                             </form>
                                         </td>
                                         <td class="text-right">Loan term</td>
                                     </tr>
                                     <tr>
-                                        <td>₹ 1,54,656</td>
+                                        <td>₹ <span id="total_cost">1,54,656</span></td>
                                         <td class="text-right">Total cost</td>
                                     </tr>
                                  </table>
@@ -350,13 +349,13 @@ if(!isset($_SESSION['calculation_id'])){
 
 
 
-       function get_finance_calculation(){
+       function get_finance_calculation(loan_term=1){
         $.ajax({
             url: 'finalCalculation.php', // PHP file to handle the request
             type: 'POST',
             data: {
                 function_name: 'getFinanceCalculation', // Name of the PHP function to call
-                params: [`<?php echo $_SESSION['calculation_id']; ?>`] // Parameters to pass to the function
+                params: [`<?php echo $_SESSION['calculation_id']; ?>`,loan_term] // Parameters to pass to the function
             },
             success: function(response){
             //   console.log('response',response)
@@ -372,6 +371,31 @@ if(!isset($_SESSION['calculation_id'])){
                if(result){
                 console.log('result',result)
                 
+                $("#month_emi").html(result.month_emi)
+                $("#system_fin_cost").html(result.system_cost)
+                $("#pm_surya_fina").html(result.PM_Surya_Subsidy)
+                $("#r_solar_discount_finance").html(result.r_solar_discount)
+                $("#after_discount").html(result.after_discount)
+                $("#interest_rate").html(result.interest_rate)
+                $("#total_cost").html(result.system_cost)
+
+                let repeatCount = 10;
+
+                // Reference to the select element
+                let selectElement = document.getElementById("mySelect");
+                selectElement.innerHTML = "";
+                // Loop to create and append options
+                for (let i = 1; i <= repeatCount; i++) {
+                    let option = document.createElement("option");
+                    option.value = i; // Option value
+                    if(i==loan_term){
+                        option.selected = true; // Option value
+
+                    }
+                    option.textContent = i+" Year "; // Option text
+                    selectElement.appendChild(option); // Append to select element
+}
+
                }
 
               }
@@ -383,6 +407,11 @@ if(!isset($_SESSION['calculation_id'])){
             }
         });
        }
+
+       $("#mySelect").on("change",(target)=>{
+        console.log(target.target.value)
+        get_finance_calculation(target.target.value)
+       })
 
        get_cash_calculation()
        get_finance_calculation()
