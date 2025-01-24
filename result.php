@@ -82,9 +82,9 @@ if(!isset($_SESSION['calculation_id'])){
                         <div class="col-md-6 d-flex justify-content-end">
                              <form class="form-inline" >
                                   <label >Payment plan:</label>
-                                  <select>
-                                      <option value="">Cash</option>
-                                      <option value="">Finance</option>
+                                  <select id="graph_select">
+                                      <option value="1">Cash</option>
+                                      <option value="2">Finance</option>
                                   </select>
                                    <img src="img/help.png" class="ml-2" data-toggle="tooltip" title="Based on your payment plan—cash or financing—the system cost, lifetime savings, and ROI will vary.">                              
                                 </form>
@@ -334,7 +334,7 @@ if(!isset($_SESSION['calculation_id'])){
                 $('#r_solar_bill').html(parseInt(result.solar_bill))
                 $('#cash_dis').html(result.cash_discount)
                 $('#pay_back').html(result.payback)
-                
+                renderChart(result.lifetime_savings,result.system_cost)
                }
 
               }
@@ -378,6 +378,17 @@ if(!isset($_SESSION['calculation_id'])){
                 $("#after_discount").html(result.after_discount)
                 $("#interest_rate").html(result.interest_rate)
                 $("#total_cost").html(result.total_System_cost)
+                
+
+                console.log("sacin",$("#graph_select").val());
+                if($("#graph_select").val()==2){
+                    // $('#r_o_i').html(18)
+                    $('#r_o_i').html(result.ROI)
+                $('#system_cost_up').html((convertIntoNum(result.total_System_cost)/100000).toFixed(2))
+                $('#life_time_saving').html((convertIntoNum(result.lifetime_savings)/100000).toFixed(2))
+                renderChart(convertIntoNum(result.lifetime_savings),convertIntoNum(result.total_System_cost))
+                }
+                
 
                 let repeatCount = 10;
 
@@ -413,7 +424,110 @@ if(!isset($_SESSION['calculation_id'])){
         get_finance_calculation(target.target.value)
        })
 
+       $("#graph_select").on("change",(target)=>{
+        if(target.target.value==1){
+            get_cash_calculation()
+        }else{
+            get_finance_calculation()
+        }
+       })
+
+       function convertIntoNum(a){
+        console.log(typeof a)
+            a=a.replace(/\,/g,''); // 1125, but a string, so convert it to number
+            a = a.replace(/\₹/g, '')
+            a=parseInt(a,10);
+
+            return a
+       }
+
        get_cash_calculation()
        get_finance_calculation()
+
+
+       function renderChart(totalSaving,systemCost) {
+        console.log('totalSaving',totalSaving)
+        console.log('systemCost',systemCost )
+    //   const systemCost = 100000; // 1 lac
+    //   const totalSaving = 900000; // 9 lac
+      const years = 25; // Total years
+      const interval = 5; // Year interval
+
+const sentDataPoints = [];
+const receivedDataPoints = [];
+
+// Calculate the yearly decrease in system cost
+const systemCostDecreasingRate = systemCost / 4; // System cost is recovered in 4 years
+let startSavingYear = 4; // After 4 years, savings start
+
+for (let i = 0; i <= years; i++) {
+  // Calculate remaining system cost over 4 years
+  const remainingCost = i <= 4 ? systemCost - (systemCostDecreasingRate * i) : 0;
+  sentDataPoints.push({ x: i, y: -remainingCost });
+
+  // Start plotting savings after system cost is paid off
+  if (i >= startSavingYear) {
+    const accumulatedSaving = (totalSaving / (years - startSavingYear)) * (i - startSavingYear);
+    receivedDataPoints.push({ x: i, y: accumulatedSaving });
+  } else {
+    receivedDataPoints.push({ x: i, y: 0 });
+  }
+}
+
+const chart = new CanvasJS.Chart("chartContainer", {
+  animationEnabled: true,
+  title: {
+    // text: "Lifetime Savings (25 years)"
+  },
+  axisX: {
+    title: "Years",
+    interval: interval,
+    valueFormatString: "#",
+    labelFormatter: (e) => (e.value === startSavingYear ? `${e.value} (Cost Paid Off)` : e.value)
+  },
+  axisY: {
+    title: "Amount (₹)",
+    prefix: "₹",
+    labelFormatter: function (e) {
+      return (e.value / 100000).toFixed(1) + " L"; // Convert to Lakh and round to 1 decimal
+    },
+    interval: totalSaving/interval, // Dynamic interval for better scaling
+    gridThickness: 0.3, // Makes the grid lines thinner
+    gridColor: "#d3d3d3" // Light gray color for grid lines
+  },
+//   legend: {
+//     verticalAlign: "top",
+//     horizontalAlign: "right",
+//     dockInsidePlotArea: true
+//   },
+  toolTip: {
+    shared: true
+  },
+  data: [
+    {
+      name: "Total Saving (Received)",
+      showInLegend: true,
+      legendMarkerType: "square",
+      type: "area",
+      color: "rgba(72, 175, 101, 0.6)", // Green color for savings
+      markerSize: 0,
+      dataPoints: receivedDataPoints
+    },
+    {
+      name: "System Cost (Sent)",
+      showInLegend: true,
+      legendMarkerType: "square",
+      type: "area",
+      color: "rgba(0, 75, 141, 0.7)", // Blue color for system cost
+      markerSize: 0,
+      dataPoints: sentDataPoints
+    }
+  ]
+});
+      chart.render();
+    }
+
+    
+       
 });
 </script>
